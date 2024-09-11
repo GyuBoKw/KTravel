@@ -379,10 +379,10 @@ https://dev.msaez.io/#/142835195/storming/travel
 <br/>
 
 ### 3. 헥사고날 아키텍처 다이어그램 도출
-<img src="https://github.com/KT-HOO/KTravel/blob/main/img/0911_kafka.png" width="950" height="460" />
+<img src="https://github.com/KT-HOO/KTravel/blob/main/img/kafka%20%ED%99%94%EB%A9%B4.png" width="950" height="460" />
 
     - 각 서비스는 Kafka Publisher와 Kafka Listener를 통해 이벤트를 송신하고 수신 (느슨한 결합 및 확장성 확보)
-    - 'Plan' 서비스는 Kafka 외에 REST 기반 통신을 사용하여 다른 시스템과 데이터를 주고 받음
+    - 'Recommendation' 서비스는 Kafka 외에 REST 기반 통신을 사용하여 다른 시스템과 데이터를 주고 받음
     - 호출 관계에서 Pub/Sub과 Req/Resp 구분
     - JPA를 통해 각 서비스는 각각의 데이터베이스(H2)를 관리
 
@@ -481,3 +481,16 @@ https://dev.msaez.io/#/142835195/storming/travel
   - 생성한 Docker 이미지를 Docker Hub에 배포하여, 이를 Kubernetes나 다른 클라우드 플랫폼에서 사용할 수 있도록 준비합니다.
 - Kubernetes(K8S) 배포:
   - Kubernetes를 활용하여 클러스터 환경에 마이크로서비스를 배포합니다. 특히 Azure Kubernetes Service(AKS) 또는 다른 클라우드 기반 Kubernetes 솔루션을 사용하여, 클러스터를 자동으로 확장하고 관리할 수 있는 설정을 적용합니다.
+ 
+1. 구축 순서
+ ```
+	
+ ```
+ (1) Azure 리소스 그룹 및 AKS(Azure Kubernetes Service) 클러스터 생성  
+ (2) 서비스 별(bounded context) maven 빌드 후 jar 패키징파일 생성
+ (3) jar 패키징 파일을 통한 docker image build 및 docker hub에 push
+ (4) Helm 패키지를 통한 클러스터에 Event Store(kafka) 설치
+ (5) 각각의 서비스 및 게이트웨이의 deployment.yaml, service.yaml파일을 통한 배포
+
+
+
